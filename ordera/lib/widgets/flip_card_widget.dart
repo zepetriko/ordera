@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:math';
 import 'dart:async';
 
@@ -98,18 +99,40 @@ class _FlipCardWidgetState extends State<FlipCardWidget> {
             front: CardFrontWidget(
               key: ValueKey(widget.backColor.toString()),
               backgroundColor: widget.backColor,
-              cornerSymbol: '♠️',
-              centerIcon: Icons.shield,
+              bigCircle: SvgPicture.asset(
+                'assets/big_circle.svg',
+                width: 25,
+                height: 25,
+                color: Color(0xFFE5D0E3),
+              ),
+              avgCircle: SvgPicture.asset(
+                'assets/avg_circle.svg',
+                width: 18.8,
+                height: 18.8,
+                color: Color(0xFFE5D0E3),
+              ),
+              smallCircle: SvgPicture.asset(
+                'assets/small_circle.svg',
+                width: 14.13,
+                height: 14.13,
+                color: Color(0xFFE5D0E3),
+              ),
+              centerIcon: SvgPicture.asset(
+                'assets/center_symbol.svg',
+                width: 75,
+                height: 150,
+                color: Color(0xFFE5D0E3),
+              )
             ),
             back: Card(
-              color: Colors.white10,
+              color: Color(0xFFFBFBFF),
               child: SizedBox(
-                height: 400,
+                height: 430,
                 width: 300,
                 child: Center(
                   child: Text(
-                    widget.number?.toString() ?? "No number",
-                    style: TextStyle(fontSize: 100, fontWeight: FontWeight.bold, color: Colors.white),
+                    widget.number?.toString() ?? "00",
+                    style: TextStyle(fontSize: 215, fontWeight: FontWeight.w400, color: Color(0xFF373E40)),
                   ),
                 ),
               ),

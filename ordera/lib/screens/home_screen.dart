@@ -14,7 +14,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Color backColor = Colors.blue;
   int? number;
 
-
+  @override
   void initState() {
     super.initState();
     _loadColor();

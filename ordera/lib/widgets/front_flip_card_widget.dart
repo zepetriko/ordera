@@ -1,60 +1,77 @@
 import 'package:flutter/material.dart';
 
-class CardFrontWidget extends StatefulWidget {
+class CardFrontWidget extends StatelessWidget {
   final Color backgroundColor;
-  final String cornerSymbol;
-  final IconData centerIcon;
+  final Widget bigCircle;
+  final Widget avgCircle;
+  final Widget smallCircle;
+  final Widget centerIcon;
 
   const CardFrontWidget({
     super.key,
     required this.backgroundColor,
-    required this.cornerSymbol,
-    this.centerIcon = Icons.star,
+    required this.bigCircle,
+    required this.centerIcon, 
+    required this.avgCircle, 
+    required this.smallCircle,
   });
 
   @override
-  _CardFrontWidgetState createState() => _CardFrontWidgetState();
-}
-
-class _CardFrontWidgetState extends State<CardFrontWidget> {
-  @override
   Widget build(BuildContext context) {
     return Card(
-      color: widget.backgroundColor,
+      color: backgroundColor,
       shape: RoundedRectangleBorder(
         borderRadius:  BorderRadius.circular(12)
       ),
       elevation: 4,
       child: SizedBox(
         width: 300,
-        height: 400,
+        height: 430,
         child: Stack(
           children: [
             Center(
-              child: Icon(
-                widget.centerIcon,
-                size: 100,
-                color: Colors.white,
-              ),
+              child: centerIcon,
+            ),
+
+            Positioned(
+              top: 15,
+              left: 15,
+              child: bigCircle,
             ),
             Positioned(
-              top: 8,
-              left: 12,
-              child: Text(
-                widget.cornerSymbol,
-                style: const TextStyle(fontSize: 20, color: Colors.white),
-              ),
+              top: 60,
+              left: 18.1,
+              child: avgCircle,
             ),
             Positioned(
-              bottom: 8,
-              right: 12,
+              top: 105,
+              left: 20.435,
+              child: smallCircle,
+            ),
+            
+            Positioned(
+              bottom: 15,
+              right: 15,
               child: Transform.rotate(
                 angle: 3.1416,
-                child: Text(
-                  widget.cornerSymbol,
-                  style: const TextStyle(fontSize: 20, color: Colors.white),
+                child: bigCircle,
                 ),
-              ),
+            ),
+            Positioned(
+              bottom: 60,
+              right: 18.1,
+              child: Transform.rotate(
+                angle: 3.1416,
+                child: avgCircle,
+                ),
+            ),
+            Positioned(
+              bottom: 105,
+              right: 20.435,
+              child: Transform.rotate(
+                angle: 3.1416,
+                child: smallCircle,
+                ),
             ),
           ],
         ),
