@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Flip Card App")),
+      appBar: AppBar(title: const Text("Ordera")),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
