@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 import '../widgets/flip_card_widget.dart';
@@ -51,6 +52,55 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  Future<List<String>> loadTopics() async {
+    final text = await rootBundle.loadString('assets/topics.txt');
+    return text
+      .split('\n')
+      .map((e) => e.trim())
+      .where((e) => e.isNotEmpty)
+      .toList();
+  }
+
+  void _openTopicsMenu() async {
+    final topics = await loadTopics();
+
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) {
+        return SizedBox(
+          height: MediaQuery.of(context).size.height * 0.7,
+          child: Column(
+            children: [
+              const SizedBox(height: 12),
+              const Text(
+                'Topics',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const Divider(),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: topics.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(topics[index])
+                    );
+                  }
+                )
+              ),
+            ],
+          ),
+        );
+      }
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -64,6 +114,12 @@ class _HomeScreenState extends State<HomeScreen> {
             'assets/ordera_logo.svg',
             height: 60,
           ),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.menu),
+              onPressed: _openTopicsMenu,
+            )
+          ],
         ),
         body: Center(
           child: Column(
