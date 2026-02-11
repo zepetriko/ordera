@@ -125,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 60,
             fit: BoxFit.contain,
           ),
-          toolbarHeight: 100,
+          toolbarHeight: 80,
           actions: [
             IconButton(
               icon: const Icon(Icons.menu),

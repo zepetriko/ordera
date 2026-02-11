@@ -21,43 +21,49 @@ class ColorSelector extends StatelessWidget {
       Color(0xFF4E4C67),
     ];
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        ...colors.map((color) {
-          return GestureDetector(
-            onTap: () => onColorTap(color),
-            child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 6),
-              width: 24,
-              height: 24,
-              decoration: BoxDecoration(
-                color: color,
-                shape: BoxShape.circle,
+    return SizedBox(
+      height: 40,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ...colors.map((color) {
+              return GestureDetector(
+                onTap: () => onColorTap(color),
+                child: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 6),
+                  width: 24,
+                  height: 24,
+                  decoration: BoxDecoration(
+                    color: color,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+              );
+            }).toList(),
+        
+            GestureDetector(
+              onTap: () => _pickCustomColor(context),
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 3),
+                width: 24,
+                height: 24,
+                decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  border: Border.all(color: Colors.black),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.add,
+                  size: 16,
+                  color: Colors.black,
+                ),
               ),
             ),
-          );
-        }).toList(),
-
-        GestureDetector(
-          onTap: () => _pickCustomColor(context),
-          child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 3),
-            width: 24,
-            height: 24,
-            decoration: BoxDecoration(
-              color: Colors.transparent,
-              border: Border.all(color: Colors.black),
-              shape: BoxShape.circle,
-            ),
-            child: const Icon(
-              Icons.add,
-              size: 16,
-              color: Colors.black,
-            ),
-          ),
+          ],
         ),
-      ],
+      ),
     );
   }
 
