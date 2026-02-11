@@ -42,7 +42,7 @@ class ColorSelector extends StatelessWidget {
         GestureDetector(
           onTap: () => _pickCustomColor(context),
           child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 6),
+            margin: const EdgeInsets.symmetric(horizontal: 3),
             width: 24,
             height: 24,
             decoration: BoxDecoration(

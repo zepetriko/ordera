@@ -133,51 +133,62 @@ class _HomeScreenState extends State<HomeScreen> {
             )
           ],
         ),
-        body: Padding(
-          padding: EdgeInsets.only(top: 12),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              FractionallySizedBox(
-                widthFactor: 0.75,
-                child: TextField(
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  decoration: InputDecoration(
-                    hintText: 'Text here',
-                    hintStyle: TextStyle( color: Colors.grey.shade400),
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 14,
+        body: SafeArea(
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return SingleChildScrollView(
+                padding: const EdgeInsets.all(8),
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                  child: IntrinsicHeight(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        FractionallySizedBox(
+                          widthFactor: 0.75,
+                          child: TextField(
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            decoration: InputDecoration(
+                              hintText: 'Text here',
+                              hintStyle: TextStyle( color: Colors.grey.shade400),
+                              contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                                vertical: 14,
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(14),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(14),
+                                borderSide: const BorderSide(
+                                  color: Colors.blue,
+                                  width: 2,
+                                )
+                              )
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        FlipCardWidget(
+                          number: number,
+                          backColor: backColor,
+                          onGenerate: _onNumberGenerated,  // Callback to update number
+                        ),  // Custom widget for flip card
+                        const SizedBox(height: 12),
+                        ColorSelector(
+                          onColorTap: _onColorSelected,  // Callback to update color
+                        ),   // Custom widget for color selection
+                      ],
                     ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(14),
-                      borderSide: const BorderSide(
-                        color: Colors.blue,
-                        width: 2,
-                      )
-                    )
                   ),
                 ),
-              ),
-              const SizedBox(height: 12),
-              FlipCardWidget(
-                number: number,
-                backColor: backColor,
-                onGenerate: _onNumberGenerated,  // Callback to update number
-              ),  // Custom widget for flip card
-              const SizedBox(height: 12),
-              ColorSelector(
-                onColorTap: _onColorSelected,  // Callback to update color
-              ),   // Custom widget for color selection
-            ],
+              );
+            },
           ),
         ),
       ),
