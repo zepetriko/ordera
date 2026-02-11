@@ -5,6 +5,7 @@ import 'package:wakelock_plus/wakelock_plus.dart';
 import '../widgets/flip_card_widget.dart';
 import '../widgets/color_selector.dart';
 import '../models/settings.dart';
+import '../widgets/tutorial_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -109,10 +110,20 @@ class _HomeScreenState extends State<HomeScreen> {
       },
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.help_outline),
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (_) => const TutorialDialog(),
+              );
+            },
+          ),
           centerTitle: true,
-          title: SvgPicture.asset(
-            'assets/ordera_logo.svg',
+          title: Image.asset(
+            'assets/ordera_logo.png',
             height: 60,
+            fit: BoxFit.contain,
           ),
           actions: [
             IconButton(
