@@ -26,8 +26,8 @@ class ColorSelector extends StatelessWidget {
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const SizedBox(width: 6),
             ...colors.map((color) {
               return GestureDetector(
                 onTap: () => onColorTap(color),
