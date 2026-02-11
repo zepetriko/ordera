@@ -1,16 +1,10 @@
-# ordera
-
-A new Flutter project.
+![Alt text](assets/ordera_logo.png)
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is a cooperative ranking game to play with your friends.
 
-A few resources to get you started if this is your first Flutter project:
+Go to [Ordera](https://zepetriko.github.io/ordera/) and play.
+If you need tutorial, just click the "?" icon.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Have Fun!!
