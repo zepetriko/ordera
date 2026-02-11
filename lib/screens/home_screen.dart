@@ -125,6 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 60,
             fit: BoxFit.contain,
           ),
+          toolbarHeight: 100,
           actions: [
             IconButton(
               icon: const Icon(Icons.menu),
@@ -132,9 +133,11 @@ class _HomeScreenState extends State<HomeScreen> {
             )
           ],
         ),
-        body: Center(
+        body: Padding(
+          padding: EdgeInsets.only(top: 12),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               FractionallySizedBox(
                 widthFactor: 0.75,
@@ -164,13 +167,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 12),
               FlipCardWidget(
                 number: number,
                 backColor: backColor,
                 onGenerate: _onNumberGenerated,  // Callback to update number
               ),  // Custom widget for flip card
-              const SizedBox(height: 20),
+              const SizedBox(height: 12),
               ColorSelector(
                 onColorTap: _onColorSelected,  // Callback to update color
               ),   // Custom widget for color selection

@@ -60,7 +60,11 @@ class _TutorialDialogState extends State<TutorialDialog> {
         mainAxisSize: MainAxisSize.min,
         children: [
           if (step.imagePath != null) ...[
-            Image.asset(step.imagePath!),
+            Image.asset(
+              step.imagePath!,
+              width: 300,
+              height: 150,
+            ),
             const SizedBox(height: 12),
           ],
           Text(

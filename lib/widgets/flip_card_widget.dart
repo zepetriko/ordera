@@ -39,7 +39,7 @@ class _FlipCardWidgetState extends State<FlipCardWidget> {
   void _startCountdown() {
     setState(() {
       isButtonEnabled = false;
-      countdown = 5;
+      countdown = 10;
     });
 
     _countdownTimer = Timer.periodic(const Duration(seconds: 1), (timer){
@@ -77,7 +77,7 @@ class _FlipCardWidgetState extends State<FlipCardWidget> {
       });
       cardKey.currentState?.toggleCard();
 
-      Future.delayed(const Duration(milliseconds: 500), () {
+      Future.delayed(const Duration(milliseconds: 1000), () {
         if (mounted) {
           widget.onGenerate(randomNumber);
         }

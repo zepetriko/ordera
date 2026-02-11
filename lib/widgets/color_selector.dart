@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 class ColorSelector extends StatelessWidget {
   final Function(Color color) onColorTap;
@@ -22,20 +23,78 @@ class ColorSelector extends StatelessWidget {
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: colors.map((color) {
-        return GestureDetector(
-          onTap: () => onColorTap(color),
+      children: [
+        ...colors.map((color) {
+          return GestureDetector(
+            onTap: () => onColorTap(color),
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 6),
+              width: 24,
+              height: 24,
+              decoration: BoxDecoration(
+                color: color,
+                shape: BoxShape.circle,
+              ),
+            ),
+          );
+        }).toList(),
+
+        GestureDetector(
+          onTap: () => _pickCustomColor(context),
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 6),
             width: 24,
             height: 24,
             decoration: BoxDecoration(
-              color: color,
+              color: Colors.transparent,
+              border: Border.all(color: Colors.black),
               shape: BoxShape.circle,
             ),
+            child: const Icon(
+              Icons.add,
+              size: 16,
+              color: Colors.black,
+            ),
           ),
-        );
-      }).toList(),
+        ),
+      ],
     );
   }
+
+  void _pickCustomColor(BuildContext context) {
+    Color selectedColor = Colors.white;
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Pick a color'),
+          content: SingleChildScrollView(
+            child: ColorPicker(
+              pickerColor: selectedColor, 
+              onColorChanged: (color) {
+                selectedColor = color;
+              },
+              showLabel: true,
+              pickerAreaHeightPercent: 0.8,
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(), 
+              child: const Text('Cancel')
+            ),
+            TextButton(
+              onPressed: () {
+                onColorTap(selectedColor);
+                Navigator.of(context).pop();
+              }, 
+              child: const Text('Select'),
+            ),
+          ],
+        );
+      }
+    );
+  }
+
 }
